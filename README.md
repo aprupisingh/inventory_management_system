@@ -6,7 +6,6 @@ A modern **Inventory Management System** built to help businesses efficiently ma
 
 ## 🚀 Features
 
-- 🔐 User Authentication (Admin/User Login)
 - 📦 Add, Update, Delete Products
 - 📊 Dashboard with Inventory Overview
 - 📉 Stock Management
@@ -18,9 +17,6 @@ A modern **Inventory Management System** built to help businesses efficiently ma
 - 📱 Responsive User Interface
 
 ---
-
-## 🛠️ Tech Stack
-
 ### Frontend
 - HTML5
 - CSS3
@@ -38,31 +34,7 @@ A modern **Inventory Management System** built to help businesses efficiently ma
 - Git
 - GitHub
 
----
 
-## 📂 Project Structure
-
-```
-inventory-management-system/
-│
-├── static/
-│   ├── css/
-│   ├── js/
-│   └── images/
-│
-├── templates/
-│   ├── index.html
-│   ├── login.html
-│   ├── dashboard.html
-│   ├── products.html
-│   ├── suppliers.html
-│   └── reports.html
-│
-├── app.py
-├── requirements.txt
-├── database.db
-├── README.md
-└── LICENSE
 
 
 
