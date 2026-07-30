@@ -63,50 +63,6 @@ inventory-management-system/
 ├── database.db
 ├── README.md
 └── LICENSE
-```
-
----
-
-## ⚙️ Installation
-
-### 1️⃣ Clone the Repository
-
-```bash
-git clone https://github.com/your-username/inventory-management-system.git
-```
-
-### 2️⃣ Navigate to Project Folder
-
-```bash
-cd inventory-management-system
-```
-
-### 3️⃣ Create Virtual Environment
-
-```bash
-python -m venv venv
-```
-
-### 4️⃣ Activate Virtual Environment
-
-**Windows**
-
-```bash
-venv\Scripts\activate
-```
-
-**Linux/macOS**
-
-```bash
-source venv/bin/activate
-```
-
-### 5️⃣ Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
 
 
 
