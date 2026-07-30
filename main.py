@@ -47,7 +47,7 @@ def view_products():
         print("\nNo products available.")
 
     else:
-        print("\n============================ PRODUCT LIST ============================")
+        print("\n============== PRODUCT LIST ==============")
         print("{:<8} {:<20} {:<15} {:<10} {:<10}".format(
             "ID", "Name", "Category", "Qty", "Price"
         ))
@@ -89,7 +89,7 @@ def search_product():
         print("\nProduct not found!")
 
     else:
-        print("\n==================== SEARCH RESULT ====================")
+        print("\n============== SEARCH RESULT ==============")
         print("{:<8} {:<20} {:<15} {:<10} {:<10}".format(
             "ID", "Name", "Category", "Qty", "Price"
         ))
