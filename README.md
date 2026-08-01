@@ -1,54 +1,79 @@
 # 📦 Inventory Management System
 
-A modern **Inventory Management System** built to help businesses efficiently manage products, stock levels, suppliers, and sales. The system provides an easy-to-use interface for tracking inventory in real time and reducing manual work.
+A web-based **Inventory Management System** developed using **Python, Flask, HTML, CSS, Bootstrap, and SQLite**.
+
+This project helps businesses manage products, inventory stock, customers, sales, and invoices from a simple and user-friendly web interface.
 
 ---
 
 ## 🚀 Features
 
-- 📦 Add, Update, Delete Products
-- 📊 Dashboard with Inventory Overview
-- 📉 Stock Management
-- ⚠️ Low Stock Alerts
-- 🏢 Supplier Management
-- 🛒 Sales & Purchase Management
-- 🔍 Search and Filter Products
-- 📈 Inventory Reports
-- 📱 Responsive User Interface
+### 📦 Product Management
+- ➕ Add new products
+- 👁️ View all products
+- 🔍 Search products
+- ✏️ Edit product details
+- 🗑️ Delete products
+- 📊 Track product quantity
+- 💰 Manage product prices
+- 📂 Manage product categories
+
+### 📊 Dashboard
+- 📦 Total Products
+- 📂 Total Categories
+- ⚠️ Low Stock Items
+- 💰 Total Inventory Value
+- 🧾 Total Sales
+- 💵 Total Revenue
+
+### 🛒 Sales Management
+- ➕ Create new sales
+- 👤 Enter customer details
+- 📦 Select products
+- 🔢 Enter quantity
+- 💰 Automatically calculate total price
+- 📉 Automatically reduce inventory stock
+- 🕒 Store current sale date and time
+
+### 👤 Customer Management
+- Add customer details
+- Store customer name
+- Store customer phone number
+- View customer information
+
+### 🧾 Billing & Invoice
+- Generate bills
+- Generate invoices
+- Display customer information
+- Display purchased products
+- Display quantity and price
+- Display total amount
+- Store invoice/sales information
+
+### 📈 Sales History
+- View previous sales
+- Search sales
+- View customer details
+- View product details
+- View sale date and time
+- View total revenue
 
 ---
-### Frontend
-- HTML5
-- CSS3
-- JavaScript
-- Bootstrap
 
-### Backend
-- Python
-- Flask
+## 🛠️ Technologies Used
 
-### Database
-- SQLite / MySQL
-
-### Version Control
-- Git
-- GitHub
-
-
-
-
-
-## 🎯 Future Enhancements
-
-- Barcode Scanner
-- QR Code Support
-- Email Notifications
-- Sales Analytics Dashboard
-- Multi-User Role Management
-- Export Reports to PDF & Excel
-- Cloud Database Support
-- Dark Mode
+| Technology | Purpose |
+|---|---|
+| 🐍 Python | Backend programming |
+| 🌐 Flask | Web framework |
+| 🗄️ SQLite | Database |
+| 🎨 HTML | Web page structure |
+| 🎨 CSS | Styling |
+| 🅱️ Bootstrap | Responsive UI |
+| 🔤 Jinja2 | Dynamic HTML templates |
 
 ---
 
+
+<img width="1863" height="934" alt="Screenshot 2026-08-01 140933" src="https://github.com/user-attachments/assets/680477a5-b893-44ee-8c05-35859d18d7b8" />
 
