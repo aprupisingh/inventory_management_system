@@ -50,3 +50,5 @@ A modern **Inventory Management System** built to help businesses efficiently ma
 - Dark Mode
 
 ---
+<img width="1910" height="1072" alt="image" src="https://github.com/user-attachments/assets/50e84451-f034-45ce-96a8-77df002b7331" />
+
