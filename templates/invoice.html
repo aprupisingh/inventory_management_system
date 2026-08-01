@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ invoice_no }}</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <style>
+
+        body {
+            background: #eef2f7;
+            font-family: Arial, sans-serif;
+        }
+
+        .invoice-container {
+            max-width: 850px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+        }
+
+        .company-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+
+        .invoice-title {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .customer-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .total-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .grand-total {
+            font-size: 24px;
+            font-weight: bold;
+            color: #198754;
+        }
+
+        @media print {
+
+            body {
+                background: white;
+            }
+
+            .invoice-container {
+                margin: 0;
+                max-width: 100%;
+                box-shadow: none;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="invoice-container">
+
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="row align-items-center">
+
+        <div class="col-md-7">
+
+            <div class="company-name">
+
+                📦 Inventory Management System
+
+            </div>
+
+            <p class="text-muted mb-0">
+
+                Inventory & Sales Management
+
+            </p>
+
+        </div>
+
+
+        <div class="col-md-5 text-end">
+
+            <div class="invoice-title">
+
+                INVOICE
+
+            </div>
+
+            <strong>
+
+                {{ invoice_no }}
+
+            </strong>
+
+            <br>
+
+            <small>
+
+                Date:
+                {{ sale["sale_date"] }}
+
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- ================= CUSTOMER ================= -->
+
+    <div class="customer-box mb-4">
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <h6 class="text-muted">
+
+                    BILL TO
+
+                </h6>
+
+                <h5>
+
+                    {{ sale["customer_name"] or "Walk-in Customer" }}
+
+                </h5>
+
+                <p class="mb-0">
+
+                    📞 {{ sale["phone"] or "N/A" }}
+
+                </p>
+
+            </div>
+
+
+            <div class="col-md-6 text-end">
+
+                <span class="badge bg-success fs-6">
+
+                    PAID
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= PRODUCT ================= -->
+
+    <table class="table table-bordered">
+
+        <thead class="table-dark">
+
+            <tr>
+
+                <th>#</th>
+
+                <th>Product</th>
+
+                <th>Category</th>
+
+                <th>Quantity</th>
+
+                <th>Price</th>
+
+                <th>Total</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            <tr>
+
+                <td>1</td>
+
+                <td>
+
+                    {{ sale["product_name"] }}
+
+                </td>
+
+                <td>
+
+                    {{ sale["category"] }}
+
+                </td>
+
+                <td>
+
+                    {{ sale["quantity"] }}
+
+                </td>
+
+                <td>
+
+                    ₹ {{ "%.2f"|format(sale["price"]) }}
+
+                </td>
+
+                <td>
+
+                    ₹ {{ "%.2f"|format(sale["total"]) }}
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+    <!-- ================= BILL SUMMARY ================= -->
+
+    <div class="row justify-content-end mt-4">
+
+        <div class="col-md-5">
+
+            <div class="total-box">
+
+
+                <div class="d-flex justify-content-between">
+
+                    <span>
+
+                        Subtotal
+
+                    </span>
+
+                    <strong>
+
+                        ₹ {{ "%.2f"|format(subtotal) }}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="d-flex justify-content-between mt-2">
+
+                    <span>
+
+                        Discount
+
+                    </span>
+
+                    <strong>
+
+                        ₹ {{ "%.2f"|format(discount) }}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="d-flex justify-content-between mt-2">
+
+                    <span>
+
+                        GST ({{ gst_rate }}%)
+
+                    </span>
+
+                    <strong>
+
+                        ₹ {{ "%.2f"|format(gst) }}
+
+                    </strong>
+
+                </div>
+
+
+                <hr>
+
+
+                <div class="d-flex justify-content-between">
+
+                    <span class="grand-total">
+
+                        Grand Total
+
+                    </span>
+
+                    <span class="grand-total">
+
+                        ₹ {{ "%.2f"|format(grand_total) }}
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <div class="text-center mt-5">
+
+        <h5>
+
+            Thank You For Shopping! ❤️
+
+        </h5>
+
+        <p class="text-muted">
+
+            Please visit us again.
+
+        </p>
+
+        <small class="text-muted">
+
+            This is a computer-generated invoice.
+
+        </small>
+
+    </div>
+
+
+    <!-- ================= BUTTONS ================= -->
+
+    <div class="text-center mt-4 no-print">
+
+        <button
+            onclick="window.print()"
+            class="btn btn-primary">
+
+            🖨️ Print Invoice
+
+        </button>
+
+
+        <a
+            href="/sales"
+            class="btn btn-secondary">
+
+            📋 Sales History
+
+        </a>
+
+
+        <a
+            href="/"
+            class="btn btn-dark">
+
+            📊 Dashboard
+
+        </a>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
