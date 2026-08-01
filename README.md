@@ -76,4 +76,6 @@ This project helps businesses manage products, inventory stock, customers, sales
 
 
 <img width="1863" height="934" alt="Screenshot 2026-08-01 140933" src="https://github.com/user-attachments/assets/680477a5-b893-44ee-8c05-35859d18d7b8" />
+<img width="1864" height="750" alt="Screenshot 2026-08-01 141648" src="https://github.com/user-attachments/assets/89b7ed98-9e8d-45b4-af53-42cba98c69db" />
+<img width="919" height="864" alt="Screenshot 2026-08-01 141758" src="https://github.com/user-attachments/assets/12ac04cd-62b3-4aeb-ba64-6172038e7f70" />
 
