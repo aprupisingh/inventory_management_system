@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, redirect, flash
+import csv
+import io
 import sqlite3
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="statics", static_url_path="/static")
 app.secret_key = "inventory_secret_key"
 
 
@@ -227,6 +229,107 @@ def add():
         return redirect("/")
 
     return render_template("add_product.html")
+
+
+# =========================================================
+# IMPORT PRODUCTS FROM CSV
+# =========================================================
+
+@app.route("/import-products", methods=["POST"])
+def import_products():
+
+    uploaded_file = request.files.get("product_file")
+
+    if uploaded_file is None or uploaded_file.filename == "":
+
+        flash(
+            "Please select a CSV file to import.",
+            "danger"
+        )
+
+        return redirect("/add")
+
+    try:
+
+        file_text = uploaded_file.stream.read().decode("utf-8-sig")
+        reader = csv.DictReader(io.StringIO(file_text))
+        required_columns = {
+            "product name",
+            "category",
+            "quantity",
+            "price"
+        }
+
+        if reader.fieldnames is None:
+
+            raise ValueError("The CSV file is empty.")
+
+        column_map = {
+            column.strip().lower(): column
+            for column in reader.fieldnames
+            if column is not None
+        }
+
+        if not required_columns.issubset(column_map):
+
+            raise ValueError(
+                "CSV must contain Product Name, Category, Quantity, and Price columns."
+            )
+
+        products = []
+
+        for row_number, row in enumerate(reader, start=2):
+
+            name = row.get(column_map["product name"], "").strip()
+            category = row.get(column_map["category"], "").strip()
+
+            if not name or not category:
+
+                raise ValueError(
+                    f"Row {row_number}: product name and category are required."
+                )
+
+            quantity = int(row.get(column_map["quantity"], "").strip())
+            price = float(row.get(column_map["price"], "").strip())
+
+            if quantity < 0 or price < 0:
+
+                raise ValueError(
+                    f"Row {row_number}: quantity and price cannot be negative."
+                )
+
+            products.append((name, category, quantity, price))
+
+        if not products:
+
+            raise ValueError("The CSV file contains no products.")
+
+        conn = connect_db()
+
+        conn.executemany("""
+            INSERT INTO products
+            (product_name, category, quantity, price)
+            VALUES (?, ?, ?, ?)
+        """, products)
+
+        conn.commit()
+        conn.close()
+
+    except (UnicodeDecodeError, ValueError, TypeError):
+
+        flash(
+            "CSV import failed. Check the file format and values.",
+            "danger"
+        )
+
+        return redirect("/add")
+
+    flash(
+        f"{len(products)} products imported successfully!",
+        "success"
+    )
+
+    return redirect("/")
 
 
 # =========================================================

@@ -100,6 +100,23 @@
 
             </form>
 
+            <hr class="my-4">
+
+            <h5 class="mb-3">Import Products from CSV</h5>
+
+            <form action="/import-products" method="POST" enctype="multipart/form-data">
+                <label for="product_file" class="form-label">CSV file</label>
+                <input
+                    type="file"
+                    id="product_file"
+                    name="product_file"
+                    class="form-control mb-3"
+                    accept=".csv,text/csv"
+                    required>
+                <p class="form-text">Required columns: Product Name, Category, Quantity, Price</p>
+                <button type="submit" class="btn btn-primary">Import CSV</button>
+            </form>
+
         </div>
 
     </div>
