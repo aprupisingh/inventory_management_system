@@ -281,36 +281,28 @@ http://127.0.0.1:5000/
 Add screenshots of the actual application here.
 
 ### 📊 Dashboard
-
-```markdown
-![Dashboard](screenshots/dashboard.png)
-```
+<img width="1879" height="1002" alt="image" src="https://github.com/user-attachments/assets/b6fe3ee9-afc2-4e52-96a5-4b5625d93048" />
 
 ### 📦 Product Management
 
-```markdown
-![Products](screenshots/products.png)
-```
+<img width="512" height="613" alt="image" src="https://github.com/user-attachments/assets/a235c8c4-6bc9-4c97-98a2-f1d2b2e0b440" /><img width="1836" height="713" alt="image" src="https://github.com/user-attachments/assets/290996cb-37a0-4622-8150-556a1a657a46" />
+
 
 ### 🛒 Sales Management
 
-```markdown
-![Sales](screenshots/sales.png)
-```
+<img width="1536" height="888" alt="image" src="https://github.com/user-attachments/assets/8f0eba11-362d-420b-bfc6-3086cca7b727" />
 
 ### 🧾 Invoice
 
-```markdown
-![Invoice](screenshots/invoice.png)
-```
+<img width="1869" height="926" alt="image" src="https://github.com/user-attachments/assets/8f80948b-781e-4e64-9401-67559c2f376a" />
+
 
 ### 📈 Sales History
 
-```markdown
-![Sales History](screenshots/sales-history.png)
-```
+<img width="1871" height="871" alt="image" src="https://github.com/user-attachments/assets/3e5b0fd6-45d8-4e53-9874-46fadfdb645d" />
+## 🗂️Report
+<img width="1869" height="926" alt="image" src="https://github.com/user-attachments/assets/f3a5aed0-6c21-4599-95dc-8f2aefc94872" />
 
----
 
 ## 🎯 Project Objectives
 
@@ -381,12 +373,3 @@ https://github.com/aprupisingh
 
 ---
 
-## ⭐ Support
-
-If you find this project useful, consider giving the repository a ⭐ on GitHub.
-
----
-
-## 📄 License
-
-This project was developed for **educational and portfolio purposes**.
