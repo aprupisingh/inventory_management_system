@@ -2,6 +2,56 @@
    TEST PAGE
 ========================================== */
 
+body {
+    min-height: 100vh;
+    transition: background-color 0.2s ease;
+}
+
+.inventory-page {
+    background: #eaf4ff;
+}
+
+.new-sale-page {
+    background: #fff3e6;
+}
+
+.new-sale-page .card {
+    background: #fffaf4;
+}
+
+.new-sale-page .card-header {
+    background: #c75c2c !important;
+}
+
+.customers-page {
+    background: #e9f7f2;
+}
+
+.customers-page .card,
+.customers-page .table-container {
+    background: #f7fffc;
+}
+
+.reports-page {
+    background: #f2edff;
+}
+
+.reports-page .card {
+    background: #fffaff;
+}
+
+.returns-page {
+    background: #fff0f0;
+}
+
+.returns-page .card {
+    background: #fffafa;
+}
+
+.sales-page {
+    background: #eef5ff;
+}
+
 
 .option-item {
 

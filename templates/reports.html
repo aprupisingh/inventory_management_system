@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & Analytics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="reports-page">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand fw-bold">Inventory Management System</a>
+            <div class="d-flex gap-2">
+                <a href="/" class="btn btn-outline-light btn-sm">Dashboard</a>
+                <a href="/sales" class="btn btn-outline-light btn-sm">Sales History</a>
+                <a href="/returns" class="btn btn-outline-light btn-sm">Returns</a>
+                <a href="/reports" class="btn btn-primary btn-sm">Reports</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-fluid px-4 mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h2 text-primary fw-bold">Reports & Analytics</h1>
+            <a href="/sales" class="btn btn-secondary">Sales History</a>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-sm-6 col-xl-3"><div class="card shadow-sm"><div class="card-body"><h6 class="text-muted">Net Revenue</h6><p class="h3 mb-0">₹ {{ "%.2f"|format(revenue) }}</p></div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="card shadow-sm"><div class="card-body"><h6 class="text-muted">Inventory Value</h6><p class="h3 mb-0">₹ {{ "%.2f"|format(inventory_value) }}</p></div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="card shadow-sm"><div class="card-body"><h6 class="text-muted">Net Units Sold</h6><p class="h3 mb-0">{{ net_sales_units|int }}</p></div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="card shadow-sm"><div class="card-body"><h6 class="text-muted">Refunds</h6><p class="h3 mb-0 text-danger">₹ {{ "%.2f"|format(returns_total) }}</p></div></div></div>
+        </div>
+
+        <div class="card shadow-sm mb-4"><div class="card-body"><h2 class="h5 text-primary">Sales Trends, Categories & Payment Revenue</h2><img src="{{ url_for('static', filename=chart) }}?v={{ revenue }}" class="img-fluid" alt="Analytics charts for sales trends, categories, and payment methods"></div></div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-lg-6"><div class="card shadow-sm h-100"><div class="card-body"><h2 class="h5 text-primary">Daily Sales Report</h2><div class="table-responsive"><table class="table table-sm"><thead><tr><th>Date</th><th>Units</th><th>Revenue</th></tr></thead><tbody>{% for row in daily_report %}<tr><td>{{ row.sale_date }}</td><td>{{ row.units_sold|int }}</td><td>₹ {{ "%.2f"|format(row.revenue) }}</td></tr>{% else %}<tr><td colspan="3" class="text-muted">No sales recorded.</td></tr>{% endfor %}</tbody></table></div></div></div></div>
+            <div class="col-lg-6"><div class="card shadow-sm h-100"><div class="card-body"><h2 class="h5 text-primary">Monthly Sales Report</h2><div class="table-responsive"><table class="table table-sm"><thead><tr><th>Month</th><th>Units</th><th>Revenue</th></tr></thead><tbody>{% for row in monthly_report %}<tr><td>{{ row.month }}</td><td>{{ row.units_sold|int }}</td><td>₹ {{ "%.2f"|format(row.revenue) }}</td></tr>{% else %}<tr><td colspan="3" class="text-muted">No sales recorded.</td></tr>{% endfor %}</tbody></table></div></div></div></div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-lg-6"><div class="card shadow-sm h-100"><div class="card-body"><h2 class="h5 text-primary">Top-Selling Products</h2><table class="table table-sm"><thead><tr><th>Product</th><th>Units</th><th>Revenue</th></tr></thead><tbody>{% for row in top_products %}<tr><td>{{ row.product_name }}</td><td>{{ row.units_sold|int }}</td><td>₹ {{ "%.2f"|format(row.revenue) }}</td></tr>{% else %}<tr><td colspan="3" class="text-muted">No sales recorded.</td></tr>{% endfor %}</tbody></table></div></div></div>
+            <div class="col-lg-6"><div class="card shadow-sm h-100"><div class="card-body"><h2 class="h5 text-primary">Top Customers</h2><table class="table table-sm"><thead><tr><th>Customer</th><th>Purchases</th><th>Revenue</th></tr></thead><tbody>{% for row in top_customers %}<tr><td>{{ row.customer_name }}</td><td>{{ row.purchases|int }}</td><td>₹ {{ "%.2f"|format(row.revenue) }}</td></tr>{% else %}<tr><td colspan="3" class="text-muted">No sales recorded.</td></tr>{% endfor %}</tbody></table></div></div></div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-lg-6"><div class="card shadow-sm h-100"><div class="card-body"><h2 class="h5 text-primary">Category-wise Sales</h2><table class="table table-sm"><thead><tr><th>Category</th><th>Units</th><th>Revenue</th></tr></thead><tbody>{% for row in category_report %}<tr><td>{{ row.category }}</td><td>{{ row.units_sold|int }}</td><td>₹ {{ "%.2f"|format(row.revenue) }}</td></tr>{% else %}<tr><td colspan="3" class="text-muted">No sales recorded.</td></tr>{% endfor %}</tbody></table></div></div></div>
+            <div class="col-lg-6"><div class="card shadow-sm h-100"><div class="card-body"><h2 class="h5 text-primary">Revenue by Payment Method</h2><table class="table table-sm"><thead><tr><th>Method</th><th>Revenue</th></tr></thead><tbody>{% for row in payment_report %}<tr><td>{{ row.payment_method }}</td><td>₹ {{ "%.2f"|format(row.revenue) }}</td></tr>{% else %}<tr><td colspan="2" class="text-muted">No payment data.</td></tr>{% endfor %}</tbody></table></div></div></div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-lg-6"><div class="card shadow-sm h-100"><div class="card-body"><h2 class="h5 text-primary">Low Stock Report</h2><table class="table table-sm"><thead><tr><th>Product</th><th>Category</th><th>Stock</th></tr></thead><tbody>{% for row in low_stock %}<tr><td>{{ row.product_name }}</td><td>{{ row.category }}</td><td class="text-danger fw-bold">{{ row.quantity }}</td></tr>{% else %}<tr><td colspan="3" class="text-muted">No low-stock products.</td></tr>{% endfor %}</tbody></table></div></div></div>
+            <div class="col-lg-6"><div class="card shadow-sm h-100"><div class="card-body"><h2 class="h5 text-primary">Purchase vs Sales</h2><p>Estimated purchased units: <strong>{{ estimated_purchases|int }}</strong></p><p>Net units sold: <strong>{{ net_sales_units|int }}</strong></p><p>Current inventory units: <strong>{{ (estimated_purchases - net_sales_units)|int }}</strong></p><hr><h2 class="h5 text-primary">Profit/Loss</h2><p class="text-muted">Profit/loss is unavailable because product cost prices are not stored yet.</p></div></div></div>
+        </div>
+    </main>
+</body>
+</html>

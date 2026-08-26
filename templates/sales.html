@@ -18,9 +18,39 @@
         rel="stylesheet"
         href="{{ url_for('static', filename='css/style.css') }}">
 
+    <style>
+        .sales-page {
+            background: #eef5ff;
+        }
+
+        .sales-header {
+            background: #e5dcff;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .sales-summary {
+            background: #dff7f0;
+            padding: 16px;
+            border-radius: 12px;
+        }
+
+        .sales-search {
+            background: #fff1d6;
+            padding: 16px;
+            border-radius: 12px;
+        }
+
+        .sales-table {
+            background: #e4f5e2;
+            padding: 18px;
+            border-radius: 12px;
+        }
+    </style>
+
 </head>
 
-<body>
+<body class="sales-page">
 
 <nav class="navbar navbar-dark bg-dark">
 
@@ -52,6 +82,22 @@
 
             </a>
 
+            <a
+                href="/returns"
+                class="btn btn-outline-warning btn-sm">
+
+                ↩️ Returns
+
+            </a>
+
+            <a
+                href="/reports"
+                class="btn btn-outline-info btn-sm">
+
+                📊 Reports
+
+            </a>
+
         </div>
 
     </div>
@@ -64,7 +110,7 @@
 
     <!-- Header -->
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="sales-header d-flex justify-content-between align-items-center mb-4">
 
         <h2 class="text-primary fw-bold">
 
@@ -80,12 +126,28 @@
 
         </a>
 
+        <a
+            href="/export-sales"
+            class="btn btn-outline-primary">
+
+            📥 Export CSV
+
+        </a>
+
+        <a
+            href="/export-sales-pdf"
+            class="btn btn-outline-danger">
+
+            📄 Export PDF
+
+        </a>
+
     </div>
 
 
     <!-- Sales Summary -->
 
-    <div class="row g-3 mb-4">
+    <div class="sales-summary row g-3 mb-4">
 
 
         <div class="col-md-6">
@@ -139,7 +201,7 @@
     <form
         action="/search-sales"
         method="GET"
-        class="mb-4">
+        class="sales-search mb-4">
 
         <div class="input-group">
 
@@ -172,7 +234,7 @@
 
     <!-- Sales Table -->
 
-    <div class="inventory-container">
+    <div class="sales-table inventory-container">
 
         <div class="table-responsive">
 
@@ -194,6 +256,12 @@
                         <th>Price</th>
 
                         <th>Total</th>
+
+                        <th>Final Amount</th>
+
+                        <th>Payment Method</th>
+
+                        <th>Payment Status</th>
 
                         <th>Date</th>
 
@@ -236,11 +304,39 @@
                             ₹ {{ "%.2f"|format(sale["total"]) }}
                         </td>
 
+                        <td class="fw-bold text-success">
+                            ₹ {{ "%.2f"|format(sale["grand_total"]) }}
+                        </td>
+
+                        <td>
+                            {{ sale["payment_method"] }}
+                        </td>
+
+                        <td>
+                            {{ sale["payment_status"] }}
+                        </td>
+
                         <td>
                             {{ sale["sale_date"] }}
                         </td>
 
                         <td>
+
+                            <a
+                                href="/edit-sale/{{ sale['sale_id'] }}"
+                                class="btn btn-primary btn-sm">
+
+                                ✏️ Edit
+
+                            </a>
+
+                            <a
+                                href="/returns"
+                                class="btn btn-warning btn-sm">
+
+                                ↩️ Return
+
+                            </a>
 
                             <a
                                 href="/delete-sale/{{ sale['sale_id'] }}"
@@ -262,7 +358,7 @@
                     <tr>
 
                         <td
-                            colspan="8"
+                            colspan="11"
                             class="text-muted py-4">
 
                             🛒 No sales found.

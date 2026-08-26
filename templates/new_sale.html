@@ -16,7 +16,7 @@
 
 </head>
 
-<body class="bg-light">
+<body class="new-sale-page">
 
 <div class="container mt-5">
 
@@ -140,6 +140,53 @@
                         min="1"
                         required>
 
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label for="discount" class="form-label fw-bold">Discount (₹)</label>
+                        <input id="discount" type="number" name="discount" class="form-control" min="0" step="0.01" value="0" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="gst_rate" class="form-label fw-bold">GST (%)</label>
+                        <input id="gst_rate" type="number" name="gst_rate" class="form-control" min="0" step="0.01" value="18" required>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <label for="payment_method" class="form-label fw-bold">Payment Method</label>
+                        <select id="payment_method" name="payment_method" class="form-select" required>
+                            <option>Cash</option>
+                            <option>UPI</option>
+                            <option>Credit Card</option>
+                            <option>Debit Card</option>
+                            <option>Net Banking</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="payment_amount" class="form-label fw-bold">Payment Amount (₹)</label>
+                        <input id="payment_amount" type="number" name="payment_amount" class="form-control" min="0" step="0.01" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="payment_status" class="form-label fw-bold">Payment Status</label>
+                        <select id="payment_status" name="payment_status" class="form-select" required>
+                            <option>Paid</option>
+                            <option>Pending</option>
+                            <option>Partially Paid</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label for="payment_date" class="form-label fw-bold">Payment Date</label>
+                        <input id="payment_date" type="date" name="payment_date" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="transaction_id" class="form-label fw-bold">Transaction ID</label>
+                        <input id="transaction_id" type="text" name="transaction_id" class="form-control" maxlength="100">
+                    </div>
                 </div>
 
 
